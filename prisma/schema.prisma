@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Post {
+  id        String  @default(cuid()) @id
+  title     String 
+  content   String?
+  published Boolean @default(false)
+  author    User?   @relation(fields: [authorId], references: [id])
+  authorId  String?
+}
+
+model User {
+  id        String   @default(cuid()) @id
+  name      String
+  email     String   @unique
+  createdAt DateTime @default(now()) @map(name: "created_at")
+  updateAt  DateTime @updatedAt @map(name: "updated_at") //sempre que houver uma alteração na linha correspondente, atualizar esse campo
+  posts     Post[] //preenchido automaticamente
+}

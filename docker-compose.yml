@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+  project:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: project
+    restart: always
+    volumes: 
+    - ./:/app
+    - /app/node_modules
+    - /app/.next
+    ports: 
+    - 3000:3000
+
+    postgres: 
+      container_name: postgres
+      hostname: postgres
+      image: postgres:latest
+      restart: on-failure
+      environment: 
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+      ports: 
+      - 5432:5432
