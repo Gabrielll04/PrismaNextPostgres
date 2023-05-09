@@ -9,6 +9,7 @@ COPY prisma ./prisma/
 RUN npm install
 RUN npx prisma
 RUN npx prisma db push
+RUN npx prisma generate
 
 EXPOSE 3000
 
