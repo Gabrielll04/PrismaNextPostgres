@@ -1,4 +1,4 @@
-export default function tsete() {
+export default function Teste() {
     return (
         <div>Hello world</div>
     )

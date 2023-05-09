@@ -8,9 +8,6 @@ COPY prisma ./prisma/
 
 RUN npm install
 RUN npx prisma
-RUN npx prisma db push
-RUN npx prisma generate
+RUN apk add nmap-ncat
 
 EXPOSE 3000
-
-CMD ["npm", "run", "dev"]
