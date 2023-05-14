@@ -1,15 +1,20 @@
 import prisma from '../lib/prisma'
 
-export default function Page({feed}: any) {
+import ButtonLogin from '../../components/RegisterForm'
+
+export default async function Page() {
+  const feed = await Page.getInitialProps()
+
   return (
     <div>
       <h1>Hello, Next.js!</h1>
       <span>{`feed: ${JSON.stringify(feed)}`}</span>
+      <ButtonLogin/>
     </div>
   )
 }
 
-export async function getInitialProps() {
+Page.getInitialProps = async () => {
   const feed = await prisma.post.findMany({
     where: { published: true },
     include: {
