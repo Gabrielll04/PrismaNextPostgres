@@ -31,7 +31,7 @@ services:
     networks:
       backend:
         ipv4_address: 10.5.0.2
-    command: ["./start.sh"]
+    command: [ "/bin/sh", "./start.sh" ]
 
 networks:
   backend:
