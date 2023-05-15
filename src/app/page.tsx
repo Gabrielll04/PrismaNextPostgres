@@ -1,19 +1,26 @@
 import prisma from '../lib/prisma'
+import { redirect } from 'next/navigation'
 
-import ButtonLogin from '../../components/RegisterForm'
 import { getCurrentUser } from '@/lib/session'
-import { getServerSession } from 'next-auth'
+import LoginButton from '../components/LoginButton'
 
 export default async function Page() {
   const feed = await Page.getInitialProps()
   const user = await getCurrentUser()
 
+  if (user) {
+    redirect('/home')
+  }
+
   return (
-    <div>
-      <h1>Hello, Next.js!</h1>
-      <span>{`feed: ${JSON.stringify(feed)}`}</span><br />
-      <span>{`user: ${user?.email}`}</span><br />
-      <ButtonLogin/>
+    <div className='flex flex-col h-[40rem] w-screen justify-center items-center'>
+      <div className='heroBlurAnimationPurple'></div>
+      <div className='heroBlurAnimationGreen'></div>
+      <span className='font-bold text-7xl'>ShenzenChat</span>
+      <div className='flex justify-center items-center w-full h-32'>
+        <LoginButton />
+      </div>
+     
     </div>
   )
 }

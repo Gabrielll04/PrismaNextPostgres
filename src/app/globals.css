@@ -6,4 +6,32 @@
     body {
         @apply bg-neutral-900 text-white
     }
+
+    /* mainpage */
+    @keyframes animationBlur {
+        0%, 100% {
+            transform: translateX(70%) translateY(80%) rotate(-45deg);
+        }
+
+        50% {
+            transform: none;
+        }
+    }
+
+    .heroBlurAnimationPurple {
+        animation: animationBlur 50s infinite;
+        @apply w-[300px] h-[300px] bg-violet-500 -z-10 absolute blur-[300px] opacity-75
+    }
+
+    .heroBlurAnimationGreen {
+        animation: animationBlur;
+        @apply w-[300px] h-[300px] bg-green-500 -z-10 absolute blur-[300px] opacity-60
+    }
+}
+
+@layer utilities {
+    /*login form*/
+    .input-login {
+        @apply w-full h-10 rounded pl-3 bg-transparent ring-1 ring-white ring-opacity-25 text-opacity-25
+    }
 }
