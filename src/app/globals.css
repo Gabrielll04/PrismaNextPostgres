@@ -34,4 +34,9 @@
     .input-login {
         @apply w-full h-10 rounded pl-3 bg-transparent ring-1 ring-white ring-opacity-25 text-opacity-25
     }
+
+    /* new post form */
+    .input-create {
+        @apply w-full rounded pl-3 bg-neutral-800 text-white ring-1 ring-neutral-600
+    }
 }
