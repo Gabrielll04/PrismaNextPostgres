@@ -9,11 +9,10 @@ export async function POST(req: Request) {
   const session = getCurrentUser()
 
   if (!session) {
-    return NextResponse.json('erro falta session')
+    return NextResponse.json('Não autorizado, error: 403',)
   }
 
   const body = await req.json()
-
   const newpost = await prisma.post.create({
     data: {
       title: body.title,

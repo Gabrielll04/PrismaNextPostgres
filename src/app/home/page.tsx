@@ -1,11 +1,10 @@
+import PostCard from '@/components/PostCard'
 import prisma from '@/lib/prisma'
-
 import { getCurrentUser } from '@/lib/session'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 
 export default async function HomePage() {
-
     const user = await getCurrentUser()
     console.log(user?.image)
     if (!user) {
@@ -27,7 +26,9 @@ export default async function HomePage() {
                     </div>
                 </div>
                 <section className='flex flex-col w-full max-h-none'>
-                    {JSON.stringify(posts)}
+                    {posts.map((post) => (
+                        <PostCard key={post.id} PostContent={post}/>
+                    ))}
                 </section>
             </article>
         </main>
