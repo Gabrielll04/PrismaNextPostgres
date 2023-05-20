@@ -1,5 +1,4 @@
 'use client'
-
 import { BiRightArrowAlt } from 'react-icons/bi'
 import GithubLoginButton from '@/components/GithubLoginButton'
 
