@@ -1,12 +1,13 @@
-import { getCurrentUser } from "@/lib/session"
 import prisma from "@/lib/prisma"
 import { NextResponse } from 'next/server';
- 
+import { getServerSession } from "next-auth";
+import { AuthOptions } from "@/lib/auth";
+
 export async function GET(request: Request) {
   return NextResponse.json('teste');
 }
 export async function POST(req: Request) {
-  const session = getCurrentUser()
+  const session: any = await getServerSession(AuthOptions)
 
   if (!session) {
     return NextResponse.json('Não autorizado, error: 403',)
@@ -17,7 +18,8 @@ export async function POST(req: Request) {
     data: {
       title: body.title,
       content: body.content,
-      published: true
+      published: true,
+      authorId: session.user?.id
     },
     select: {
       id: true,
